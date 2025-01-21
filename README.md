@@ -1,6 +1,6 @@
 # Selenium Cucumber Sample Project
 
-**Intendended use:** Sample project with Selenium and Cucumber using the ChromeDriver (for Windows x86) already set up. Can be used as a starting point for less technical teams.
+**Intendended use:** Sample project with Selenium and Cucumber using the ChromeDriver (win64 version) already set up. Can be used as a starting point for less technical teams.
 
 ## Installation
 Import the project as a Maven project (tested in good old Eclipse IDE).
