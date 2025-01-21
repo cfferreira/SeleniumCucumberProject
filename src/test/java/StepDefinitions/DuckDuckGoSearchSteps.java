@@ -1,9 +1,16 @@
 package StepDefinitions;
 
+import static org.junit.Assert.assertTrue;
+
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -37,7 +44,15 @@ public class DuckDuckGoSearchSteps {
 
 	@Then("user is shown the search results")
 	public void user_is_shown_the_search_results() {
-		driver.getPageSource().contains("Online Courses");
+		WebElement searchResultsOl = driver.findElement(By.className("react-results--main"));
+
+		// wait at most 10 seconds to see if search results are displayed
+		Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(d -> searchResultsOl.isDisplayed());
+
+		// assert if "Time in California" is on the search results
+		boolean isTextFound = driver.getPageSource().contains("Time in California");
+		assertTrue("Unexpected search results", isTextFound);
 
 		driver.close();
 		driver.quit();
